@@ -36,12 +36,10 @@ $gateway = new Braintree\Gateway([
 ]);
 //$aCustomerId = "Petstockau-09871112";
 $clientToken = $gateway->clientToken()->generate([
-  "merchantAccountId" => "vimalnew" 
+  //"merchantAccountId" => "vimalnew" 
 ]);
-echo '<pre>';
-print_r($clientToken);exit;
+echo json_encode($clientToken);
 
-?>
   
 
   
