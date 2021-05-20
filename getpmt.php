@@ -5,8 +5,8 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-require("../vendor/braintree/braintree_php/lib/Braintree.php");
-require("../vendor/braintree/braintree_php/lib/autoload.php");
+require("vendor/braintree/braintree_php/lib/Braintree.php");
+require("vendor/braintree/braintree_php/lib/autoload.php");
 
 
 $gateway = new Braintree\Gateway([
