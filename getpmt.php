@@ -1,11 +1,12 @@
+
 <?php
 // echo 'dsa';exit;
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-require("vendor/braintree/braintree_php/lib/Braintree.php");
-require("vendor/braintree/braintree_php/lib/autoload.php");
+require("../vendor/braintree/braintree_php/lib/Braintree.php");
+require("../vendor/braintree/braintree_php/lib/autoload.php");
 
 
 $gateway = new Braintree\Gateway([
@@ -14,7 +15,14 @@ $gateway = new Braintree\Gateway([
   'publicKey' => '7k98242ky7c864fv',
   'privateKey' => '1acad03819572518734e047ece28ab02',
 ]);
-$result = $gateway->paymentMethodNonce()->create('dcrwhsr');
-echo json_encode($result->paymentMethodNonce->nonce);
 
-  
+$clientToken = $gateway->clientToken()->generate([
+]);
+
+$result = $gateway->paymentMethodNonce()->create('dcrwhsr');
+
+
+$data = array();
+$data['token'] = $clientToken;
+$data['pmt'] = $result->paymentMethodNonce->nonce;
+echo json_encode($data);
